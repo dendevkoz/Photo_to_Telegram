@@ -5,10 +5,8 @@
 ## Как установить 
 
 Для начала вам необходимо выполнить несколько шагов:
-- Зарегистрироваться на сайте NASA
-- [NASA](https://api.nasa.gov/) и сгенерировать токен.
-- Cоздать бота в Telegram
-- [Создаем бот в телеграм](https://smmplanner.com/blog/otlozhennyj-posting-v-telegram/)
+- Зарегистрироваться на сайте [NASA](https://api.nasa.gov/) и сгенерировать токен.
+- Cоздать бота в Telegram[(Создаем бот в телеграм)](https://smmplanner.com/blog/otlozhennyj-posting-v-telegram/)
 - Создать канал в Telegram и назначить бота Администратором.
   
 ```
