@@ -6,6 +6,7 @@ from save_image import save_all_image
 def fetch_spacex_last_launch():
     url = "https://api.spacexdata.com/v5/launches"
     response = requests.get(url)
+    response.raise_for_status()
     data = response.json()
     for item in data:
         if item["id"] == "5eb87d47ffd86e000604b38a":
@@ -20,4 +21,7 @@ def fetch_spacex_last_launch():
 
 
 if __name__ == "__main__":
-    fetch_spacex_last_launch()
+    try:
+        fetch_spacex_last_launch()
+    except requests.exceptions.HTTPError as error:
+        logging.error("Невозможно получить данные с сайта SPACEX:\n{0}".format(error))
