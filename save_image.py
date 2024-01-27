@@ -1,4 +1,7 @@
 import requests
+import os
+from urllib.parse import urlsplit, unquote
+from os import path
 
 
 def save_all_image(image_url, image_path, headers=None, params=None):
@@ -8,7 +11,20 @@ def save_all_image(image_url, image_path, headers=None, params=None):
         file.write(response.content)
 
 
+def create_directory():
+    directory_path = os.path.join(os.getcwd(), 'images')
+    if not os.path.exists(directory_path):
+        os.makedirs(directory_path)
+        return directory_path
+    else:
+        return directory_path
 
+
+def extension_file(link):
+    clear_link = unquote(link)
+    split_link = urlsplit(clear_link)
+    extension = path.splitext(split_link.path)[1]
+    return extension
 
 
 
