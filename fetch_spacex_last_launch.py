@@ -1,6 +1,6 @@
 import requests
 import os
-from save_image import save_all_image
+from save_image import save_all_image, create_directory
 
 
 def fetch_spacex_last_launch():
@@ -8,19 +8,20 @@ def fetch_spacex_last_launch():
     response = requests.get(url)
     response.raise_for_status()
     data = response.json()
-    for item in data:
-        if item["id"] == "5eb87d47ffd86e000604b38a":
-            image = item["links"]["flickr"]["original"]
-            directory = "images/spacex_last_launch"
-            os.makedirs(directory, exist_ok=True)
+    for description in data:
+        if description["id"] == launch_id:
+            image = description["links"]["flickr"]["original"]
             for image_number, image_url in enumerate(image):
-                image_path = os.path.join(directory, f"spacex_{image_number}.jpg")
-                save_all_image(image_url, image_path)
-
+                image_path = os.path.join(create_directory(), f"spacex_{image_number}.jpg")
+                try:
+                    save_all_image(image_url, image_path)
+                except requests.exceptions.HTTPError as error:
+                    logging.error("Failed to save image from SpaceX:\n{0}".format(error))
 
 
 
 if __name__ == "__main__":
+    launch_id = "5eb87d47ffd86e000604b38a"
     try:
         fetch_spacex_last_launch()
     except requests.exceptions.HTTPError as error:
