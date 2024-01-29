@@ -25,8 +25,17 @@ pip install -r requirements.txt
     - POST_TIME="Время задержки между постами"
     
 - Для скачивания фотографий с сайта NASA запустите `fetch_nasa.py`
+  ```
+    python fetch_nasa.py
+  ```
 - Для скачивания фотографий с сайта SPACEX запустите `fetch_spacex_last_launch.py`
+  ```
+    python fetch_spacex_last_launch.py
+  ```
 - Что бы выложить изображения в телеграм запустите скрипт `main.py`
+  ```
+    python main.py
+  ```
 
 ## Цель проекта
 
