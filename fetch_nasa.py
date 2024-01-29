@@ -22,7 +22,7 @@ def fetch_nasa_apod(nasa_api_key):
     for description in data:
         urls_images.append(description["url"])
     for image_number, image_url in enumerate(urls_images):
-        extension = str(file_extension(image_url))
+        extension = str(extension_file(image_url))
         image_path = os.path.join(create_directory(), f"nasa_apod{image_number}{extension}")
         try:
             save_all_image(image_url, image_path)
