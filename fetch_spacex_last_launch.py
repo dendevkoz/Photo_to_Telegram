@@ -16,7 +16,7 @@ def fetch_spacex_last_launch():
                 try:
                     save_all_image(image_url, image_path)
                 except requests.exceptions.HTTPError as error:
-                    logging.error("Failed to save image from SpaceX:\n{0}".format(error))
+                    logging.error("Не удалось сохранить изображение с сайта SpaceX:\n{0}".format(error))
 
 
 
