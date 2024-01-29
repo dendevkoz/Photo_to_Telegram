@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 ## Как работает
 - Для начала нужно создать файл `.env` и записать в него настройки:
-    -NASA_KEY = "Ваш API ключ NASA"
+    - NASA_KEY = "Ваш API ключ NASA"
     - TELEGRAM_TOKEN = "Ваш Телеграм токен"
     - CHAT_ID="ID вашего чата"
     - POST_TIME="Время задержки между постами"
