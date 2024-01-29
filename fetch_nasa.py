@@ -17,8 +17,6 @@ def fetch_nasa_apod(nasa_api_key):
     response = requests.get(nasa_apod_url, params=payload)
     response.raise_for_status()
     data = response.json()
-    directory = "images/nasa_apod"
-    os.makedirs(directory, exist_ok=True)
     for description in data:
         urls_images.append(description["url"])
     for image_number, image_url in enumerate(urls_images):
