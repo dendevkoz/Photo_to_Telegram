@@ -8,6 +8,7 @@ def fetch_spacex_last_launch():
     response = requests.get(url)
     response.raise_for_status()
     data = response.json()
+    launch_id = "5eb87d47ffd86e000604b38a"
     for description in data:
         if description["id"] == launch_id:
             image = description["links"]["flickr"]["original"]
@@ -21,7 +22,6 @@ def fetch_spacex_last_launch():
 
 
 if __name__ == "__main__":
-    launch_id = "5eb87d47ffd86e000604b38a"
     try:
         fetch_spacex_last_launch()
     except requests.exceptions.HTTPError as error:
