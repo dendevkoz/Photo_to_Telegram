@@ -17,7 +17,7 @@ def create_directory():
     return directory_path
 
 
-def extension_file(link):
+def define_extension(link):
     clear_link = unquote(link)
     split_link = urlsplit(clear_link)
     extension = path.splitext(split_link.path)[1]
