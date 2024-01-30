@@ -13,11 +13,8 @@ def save_all_image(image_url, image_path, headers=None, params=None):
 
 def create_directory():
     directory_path = os.path.join(os.getcwd(), 'images')
-    if not os.path.exists(directory_path):
-        os.makedirs(directory_path)
-        return directory_path
-    else:
-        return directory_path
+    os.path.exists(directory_path, exist_ok=True)
+    return directory_path
 
 
 def extension_file(link):
