@@ -2,7 +2,7 @@ import os
 import requests
 import datetime
 from dotenv import dotenv_values
-from save_image import save_all_image, create_directory, extension_file
+from save_image import save_all_image, create_directory, define_extension
 import logging
   
 
@@ -18,7 +18,7 @@ def fetch_nasa_apod(nasa_api_key):
     data = response.json()
     urls_images = [description["url"] for description in data]  
     for image_number, image_url in enumerate(urls_images):
-        extension = str(extension_file(image_url))
+        extension = str(define_extension(image_url))
         image_path = os.path.join(create_directory(), f"nasa_apod{image_number}{extension}")
         try:
             save_all_image(image_url, image_path)
