@@ -14,7 +14,7 @@ def send_to_bot(bot, telegram_chat_id):
                         photo = image_file.read()
                     bot.send_photo(chat_id=telegram_chat_id, photo=photo)
                     sleep(14400)
-    except telegram.error.NetworkError:
+    except telegram.error.TimedOut:
         print(f"Ошибка подключения. Повторная попытка через 5 секунд...")
         telegram.error.RetryAfter(5)
 
