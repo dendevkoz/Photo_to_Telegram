@@ -29,7 +29,7 @@ pip install -r requirements.txt
     - CHAT_ID="ID вашего чата"
     - POST_TIME="Время задержки между постами"
     
-- Для скачивания фотографий с сайта NASA используем fetch_nasa.py:
+- Для скачивания фотографий с сайта NASA используем **fetch_nasa.py**:
    - Нужно выбрать опеределенный аргумент:
         - -a (--apod)  -  Загружает изображения APOD
           ```
@@ -44,7 +44,7 @@ pip install -r requirements.txt
           python fetch_nasa.py -e
           ```
 
-- Для скачивания фотографий с сайта SPACEX используем fetch_spacex_last_launch.py:
+- Для скачивания фотографий с сайта SPACEX используем **fetch_spacex_last_launch.py**:
   - Нужно выбрать опеределенный аргумент:
      - -s (--spacex)  -  Загружает изображения SpaseX
       ```
