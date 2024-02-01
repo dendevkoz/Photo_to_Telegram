@@ -12,6 +12,11 @@
 ```
 [Python3](https://www.python.org/downloads/) должен быть уже установлен.
 ```
+Потом создаём виртуальное окружение
+```
+python -m venv venv
+Путь до корневой папки venv/scripts/activate
+```
 Затем используйте `pip` (или `pip3`, есть конфликт с Python2) для установки зависимостей:
 ```
 pip install -r requirements.txt
@@ -24,15 +29,37 @@ pip install -r requirements.txt
     - CHAT_ID="ID вашего чата"
     - POST_TIME="Время задержки между постами"
     
-- Для скачивания фотографий с сайта NASA запустите `fetch_nasa.py`
-  ```
-    python fetch_nasa.py
-  ```
-- Для скачивания фотографий с сайта SPACEX запустите `fetch_spacex_last_launch.py`
-  ```
-    python fetch_spacex_last_launch.py
-  ```
-- Что бы выложить изображения в телеграм запустите скрипт `main.py`
+- Для скачивания фотографий с сайта NASA используем fetch_nasa.py:
+   - Нужно выбрать опеределенный аргумент:
+        - -a (--apod)  -  Загружает изображения APOD
+          ```
+          python fetch_nasa.py -a
+          ```
+          - -c (--count)  -  Сколько изображений скачать? (По умолчанию : 50)
+          ```
+          python fetch_nasa.py -a -c 10
+          ```
+        - -e (--epic)  -  Загружает изображения EPIC
+          ```
+          python fetch_nasa.py -e
+          ```
+
+- Для скачивания фотографий с сайта SPACEX используем fetch_spacex_last_launch.py:
+  - Нужно выбрать опеределенный аргумент:
+     - -s (--spacex)  -  Загружает изображения SpaseX
+      ```
+        python fetch_spacex_last_launch.py -s
+      ```
+      или
+      - -l LAUNCH_ID (--launch_id LAUNCH_ID)  -  Загружает изображения определенного запуска
+      ```
+        python fetch_spacex_last_launch.py -s -l "launc_id"
+      ```
+      
+      Вместо "launch_id" можно вставить свой id запуска. По умолчанию "5eb87d47ffd86e000604b38a"
+
+  
+- Что бы выложить изображения в телеграм:
   ```
     python main.py
   ```
