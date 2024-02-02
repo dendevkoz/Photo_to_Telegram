@@ -4,11 +4,11 @@ import datetime
 from dotenv import dotenv_values
 from save_image import save_all_image, create_directory, define_extension
 import logging
+import argparse
   
 
 def fetch_nasa_apod(nasa_api_key):
     nasa_apod_url = f"https://api.nasa.gov/planetary/apod"
-    count = int(input("Сколько картинок скачать?(Число от 1 до 50): "))
     payload = {
         "count": count,
         "api_key": nasa_api_key,
@@ -53,8 +53,37 @@ def fetch_nasa_epic(nasa_api_key):
 
 if __name__ == '__main__':
     nasa_api_key = dotenv_values(".env")["NASA_KEY"]
-    try:
-        fetch_nasa_epic(nasa_api_key)
-        fetch_nasa_apod(nasa_api_key)
-    except requests.exceptions.HTTPError as error:
-        exit("Невозможно получить данные с сайта NASA EPIC или NASA APOD:\n{0}".format(error))
+    parser = argparse.ArgumentParser(
+        description="Загрузка APOD и Epic изображений с сайта NASA"
+    )
+    parser.add_argument(
+        "-a",
+        "--apod",
+        help="Загружает изображения APOD",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-e",
+        "--epic",
+        help="Загружает изображения EPIC",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-c",
+        "--count",
+        type=int,
+        help="Сколько изображений скачать? (По умолчанию : 50)",
+        default=50,
+    )
+    args = parser.parse_args()
+    if args.apod:
+      try:
+          count = args.count
+          fetch_nasa_apod(nasa_api_key)
+      except requests.exceptions.HTTPError as error:
+          exit("Невозможно получить данные с сайта NASA EPIC или NASA APOD:\n{0}".format(error))
+    if args.epic:
+      try:
+          fetch_nasa_epic(nasa_api_key)
+      except requests.exceptions.HTTPError as error:
+          exit("Невозможно получить данные с сайта NASA EPIC или NASA APOD:\n{0}".format(error))
