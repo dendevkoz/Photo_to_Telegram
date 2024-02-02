@@ -1,6 +1,8 @@
 import requests
 import os
 from save_image import save_all_image, create_directory
+import logging
+import argparse
 
 
 def fetch_spacex_last_launch():
@@ -22,6 +24,24 @@ def fetch_spacex_last_launch():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Загрузка изображений с последнего запуска SpaceX"
+    )
+    parser.add_argument(
+        "-s",
+        "--spacex",
+        help="Загружает изображения SpaseX",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-l",
+        "--launch_id",
+        type=str,
+        help="Введите id запуска(По умолчанию : 5eb87d47ffd86e000604b38a",
+        default="5eb87d47ffd86e000604b38a")
+
+    args = parser.parse_args()
+    if args.spacex:
     try:
         fetch_spacex_last_launch()
     except requests.exceptions.HTTPError as error:
