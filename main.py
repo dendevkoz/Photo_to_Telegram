@@ -9,7 +9,7 @@ def send_to_bot():
     while True:
         for root_folder, folder, file in os.walk('images'):
             for file_name in file:
-                image_path = f"{root_folder}/{file_name}"
+                image_path = os.path.join(f"{root_folder}", f"{file_name}")
                 with open(image_path, "rb") as image_file:
                     photo = image_file.read()
                 try:
