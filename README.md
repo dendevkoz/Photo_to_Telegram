@@ -25,7 +25,7 @@ pip install -r requirements.txt
 - Для начала нужно создать файл `.env` и записать в него настройки:
     - NASA_KEY = "Ваш API ключ NASA"
     - TELEGRAM_TOKEN = "Ваш Телеграм токен"
-    - CHAT_ID="ID вашего чата"
+    - TG_CHAT_ID="ID вашего чата"
     - POST_TIME="Время задержки между постами"
     
 - Для скачивания фотографий с сайта NASA используем **fetch_nasa.py**:
