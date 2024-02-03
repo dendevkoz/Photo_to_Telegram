@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     if args.spacex:
-    try:
-        fetch_spacex_last_launch()
-    except requests.exceptions.HTTPError as error:
-        logging.error("Невозможно получить данные с сайта SPACEX:\n{0}".format(error))
+        try:
+            fetch_spacex_last_launch()
+        except requests.exceptions.HTTPError as error:
+            logging.error("Невозможно получить данные с сайта SPACEX:\n{0}".format(error))
