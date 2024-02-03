@@ -18,7 +18,7 @@ def fetch_nasa_apod(nasa_api_key):
     data = response.json()
     urls_images = [description["url"] for description in data]  
     for image_number, image_url in enumerate(urls_images):
-        extension = str(define_extension(image_url))
+        extension = define_extension(image_url)
         image_path = os.path.join(create_directory(), f"nasa_apod{image_number}{extension}")
         try:
             save_all_image(image_url, image_path)
@@ -43,7 +43,7 @@ def fetch_nasa_epic(nasa_api_key):
         response = requests.get(f"https://api.nasa.gov/EPIC/archive/natural/{last_date_formatted}/png/{name}.png", params=payload)
         extension = ".png"
         picture_date = datetime.datetime.now().timestamp()
-        image_path = os.path.join(create_directory(), f"nasa_epic_{int(picture_date)}{extension}")
+        image_path = os.path.join(create_directory(), f"nasa_epic_{picture_date}{extension}")
         try:
             save_all_image(response.url, image_path)
         except requests.exceptions.HTTPError as error:
