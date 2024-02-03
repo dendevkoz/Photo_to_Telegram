@@ -23,5 +23,5 @@ def send_to_bot():
 
 if __name__ == "__main__":
     telegram_token = dotenv_values(".env")["TELEGRAM_TOKEN"]
-    telegram_chat_id = dotenv_values(".env")["CHAT_ID"]
+    telegram_chat_id = dotenv_values(".env")["TG_CHAT_ID"]
     send_to_bot()
