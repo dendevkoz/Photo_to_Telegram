@@ -9,9 +9,8 @@
 - Cоздать бота в Telegram[(Создаем бот в телеграм)](https://smmplanner.com/blog/otlozhennyj-posting-v-telegram/)
 - Создать канал в Telegram и назначить бота Администратором.
   
-```
 [Python3](https://www.python.org/downloads/) должен быть уже установлен.
-```
+
 Потом создаём виртуальное окружение
 ```
 python -m venv venv
