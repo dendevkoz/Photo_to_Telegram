@@ -7,7 +7,7 @@ import logging
 import argparse
   
 
-def fetch_nasa_apod(nasa_api_key):
+def fetch_nasa_apod(nasa_api_key, count):
     nasa_apod_url = f"https://api.nasa.gov/planetary/apod"
     payload = {
         "count": count,
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     if args.apod:
       try:
           count = args.count
-          fetch_nasa_apod(nasa_api_key)
+          fetch_nasa_apod(nasa_api_key, count)
       except requests.exceptions.HTTPError as error:
           exit("Невозможно получить данные с сайта NASA EPIC или NASA APOD:\n{0}".format(error))
     if args.epic:
