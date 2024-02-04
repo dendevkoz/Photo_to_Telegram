@@ -16,14 +16,17 @@ def fetch_nasa_apod(nasa_api_key, count):
     response = requests.get(nasa_apod_url, params=payload)
     response.raise_for_status()
     data = response.json()
-    urls_images = [description["url"] for description in data]  
-    for image_number, image_url in enumerate(urls_images):
-        extension = define_extension(image_url)
-        image_path = os.path.join(create_directory(), f"nasa_apod{image_number}{extension}")
-        try:
-            save_all_image(image_url, image_path)
-        except requests.exceptions.HTTPError as error:
-            logging.error("Не удалось сохранить изображение с сайта NASA-APOD:\n{0}".format(error))  
+    if 'error' in data:
+        raise requests.exceptions.HTTPError(data['error'])
+    else:
+        urls_images = [description["url"] for description in data]  
+        for image_number, image_url in enumerate(urls_images):
+            extension = define_extension(image_url)
+            image_path = os.path.join(create_directory(), f"nasa_apod{image_number}{extension}")
+            try:
+                save_all_image(image_url, image_path)
+            except requests.exceptions.HTTPError as error:
+                logging.error("Не удалось сохранить изображение с сайта NASA-APOD:\n{0}".format(error))  
 
 
 def fetch_nasa_epic(nasa_api_key):
@@ -34,20 +37,23 @@ def fetch_nasa_epic(nasa_api_key):
     date_response = requests.get(nasa_epic_url, params=payload)
     date_response.raise_for_status()
     data = date_response.json()
-    last_date = datetime.date.fromisoformat(data[0]["date"])
-    last_date_formatted = last_date.strftime("%Y/%m/%d")
-    last_date_respone = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{last_date}", params=payload)
-    last_date_image = last_date_respone.json()
-    picture_names = [description["image"] for description in last_date_image]
-    for name in picture_names:
-        response = requests.get(f"https://api.nasa.gov/EPIC/archive/natural/{last_date_formatted}/png/{name}.png", params=payload)
-        extension = ".png"
-        picture_date = datetime.datetime.now().timestamp()
-        image_path = os.path.join(create_directory(), f"nasa_epic_{picture_date}{extension}")
-        try:
-            save_all_image(response.url, image_path)
-        except requests.exceptions.HTTPError as error:
-            logging.error("Не удалось сохранить изображение с сайта NASA-EPIC:\n{0}".format(error))
+    if 'error' in data:
+        raise requests.exceptions.HTTPError(data['error'])
+    else:
+        last_date = datetime.date.fromisoformat(data[0]["date"])
+        last_date_formatted = last_date.strftime("%Y/%m/%d")
+        last_date_respone = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{last_date}", params=payload)
+        last_date_image = last_date_respone.json()
+        picture_names = [description["image"] for description in last_date_image]
+        for name in picture_names:
+            response = requests.get(f"https://api.nasa.gov/EPIC/archive/natural/{last_date_formatted}/png/{name}.png", params=payload)
+            extension = ".png"
+            picture_date = datetime.datetime.now().timestamp()
+            image_path = os.path.join(create_directory(), f"nasa_epic_{picture_date}{extension}")
+            try:
+                save_all_image(response.url, image_path)
+            except requests.exceptions.HTTPError as error:
+                logging.error("Не удалось сохранить изображение с сайта NASA-EPIC:\n{0}".format(error))
 
 
 
