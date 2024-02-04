@@ -10,16 +10,19 @@ def fetch_spacex_last_launch():
     response = requests.get(url)
     response.raise_for_status()
     data = response.json()
-    launch_id = "5eb87d47ffd86e000604b38a"
-    for description in data:
-        if description["id"] == launch_id:
-            image = description["links"]["flickr"]["original"]
-            for image_number, image_url in enumerate(image):
-                image_path = os.path.join(create_directory(), f"spacex_{image_number}.jpg")
-                try:
-                    save_all_image(image_url, image_path)
-                except requests.exceptions.HTTPError as error:
-                    logging.error("Не удалось сохранить изображение с сайта SpaceX:\n{0}".format(error))
+    if 'error' in data:
+        raise requests.exceptions.HTTPError(data['error'])
+    else:
+        launch_id = "5eb87d47ffd86e000604b38a"
+        for description in data:
+            if description["id"] == launch_id:
+                image = description["links"]["flickr"]["original"]
+                for image_number, image_url in enumerate(image):
+                    image_path = os.path.join(create_directory(), f"spacex_{image_number}.jpg")
+                    try:
+                        save_all_image(image_url, image_path)
+                    except requests.exceptions.HTTPError as error:
+                        logging.error("Не удалось сохранить изображение с сайта SpaceX:\n{0}".format(error))
 
 
 
