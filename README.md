@@ -1,4 +1,4 @@
-# Photo_to_Telrgram
+# Photo_to_Telergram
 
 Данная программа позволяет скачивать фотографии и выкладывать их в Телеграм канал.
 
@@ -6,7 +6,7 @@
 
 Для начала вам необходимо выполнить несколько шагов:
 - Зарегистрироваться на сайте [NASA](https://api.nasa.gov/) и сгенерировать токен.
-- Cоздать бота в Telegram[(Создаем бот в телеграм)](https://smmplanner.com/blog/otlozhennyj-posting-v-telegram/)
+- Создать бота в Telegram[(Создаем бот в телеграм)](https://smmplanner.com/blog/otlozhennyj-posting-v-telegram/)
 - Создать канал в Telegram и назначить бота Администратором.
   
 [Python3](https://www.python.org/downloads/) должен быть уже установлен.
@@ -29,12 +29,12 @@ pip install -r requirements.txt
     - POST_TIME="Время задержки между постами"
     
 - Для скачивания фотографий с сайта NASA используем **fetch_nasa.py**:
-   - Нужно выбрать опеределенный аргумент:
+   - Нужно выбрать определенный аргумент:
         - -a (--apod)  -  Загружает изображения APOD
           ```
           python fetch_nasa.py -a
           ```
-          - -c (--count)  -  Сколько изображений скачать? (По умолчанию : 50)
+          - -c (--count)  -  Сколько изображений скачать? (По умолчанию: 50)
           ```
           python fetch_nasa.py -a -c 10
           ```
