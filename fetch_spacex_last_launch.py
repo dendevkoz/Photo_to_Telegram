@@ -13,7 +13,6 @@ def fetch_spacex_last_launch():
     if 'error' in data:
         raise requests.exceptions.HTTPError(data['error'])
     else:
-        launch_id = "5eb87d47ffd86e000604b38a"
         for description in data:
             if description["id"] == launch_id:
                 image = description["links"]["flickr"]["original"]
