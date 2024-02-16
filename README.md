@@ -42,6 +42,10 @@ pip install -r requirements.txt
           ```
           python fetch_nasa.py -e
           ```
+        - -d (--dir_name)  -  Имя директории (По умолчанию : images)
+          ```
+          python fetch_nasa.py -e (или -a) -d (имя папки)
+          ```
 
 - Для скачивания фотографий с сайта SPACEX используем **fetch_spacex_last_launch.py**:
   - Нужно выбрать опеределенный аргумент:
@@ -54,7 +58,11 @@ pip install -r requirements.txt
       ```
         python fetch_spacex_last_launch.py -s -l "launc_id"
       ```
-      
+      - -d (--dir_name)  -  Имя директории (По умолчанию : images)
+        ```
+        python fetch_spacex_last_launch.py -s -d (имя папки)
+        ```
+    
       Вместо "launch_id" можно вставить свой id запуска. По умолчанию "5eb87d47ffd86e000604b38a"
 
   
@@ -62,6 +70,10 @@ pip install -r requirements.txt
   ```
     python main.py
   ```
+    - -d (--dir_name)  -  Имя директории (По умолчанию : images)
+      ```
+      python python main.py -d (имя папки)
+      ```
 
 ## Цель проекта
 
