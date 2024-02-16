@@ -17,7 +17,7 @@ def fetch_spacex_last_launch():
             if description["id"] == launch_id:
                 image = description["links"]["flickr"]["original"]
                 for image_number, image_url in enumerate(image):
-                    image_path = os.path.join(create_directory(), f"spacex_{image_number}.jpg")
+                    image_path = os.path.join(create_directory(dir_name), f"spacex_{image_number}.jpg")
                     try:
                         save_all_image(image_url, image_path)
                     except requests.exceptions.HTTPError as error:
@@ -40,11 +40,21 @@ if __name__ == "__main__":
         "--launch_id",
         type=str,
         help="Введите id запуска(По умолчанию : 5eb87d47ffd86e000604b38a",
-        default="5eb87d47ffd86e000604b38a")
+        default="5eb87d47ffd86e000604b38a"
+    )
+    parser.add_argument(
+        "-d",
+        "--dir_name",
+        type=str,
+        help="Имя директории (По умолчанию : images)",
+        default="images"
+    )
 
     args = parser.parse_args()
     if args.spacex:
         try:
+            dir_name = args.dir_name
+            launch_id = args.launch_id
             fetch_spacex_last_launch()
         except requests.exceptions.HTTPError as error:
             logging.error("Невозможно получить данные с сайта SPACEX:\n{0}".format(error))
