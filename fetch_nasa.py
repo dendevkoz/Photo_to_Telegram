@@ -7,7 +7,7 @@ import logging
 import argparse
   
 
-def fetch_nasa_apod(nasa_api_key, count):
+def fetch_nasa_apod():
     nasa_apod_url = f"https://api.nasa.gov/planetary/apod"
     payload = {
         "count": count,
@@ -22,14 +22,14 @@ def fetch_nasa_apod(nasa_api_key, count):
         urls_images = [description["url"] for description in data]  
         for image_number, image_url in enumerate(urls_images):
             extension = define_extension(image_url)
-            image_path = os.path.join(create_directory(), f"nasa_apod{image_number}{extension}")
+            image_path = os.path.join(create_directory(dir_name), f"nasa_apod{image_number}{extension}")
             try:
                 save_all_image(image_url, image_path)
             except requests.exceptions.HTTPError as error:
                 logging.error("Не удалось сохранить изображение с сайта NASA-APOD:\n{0}".format(error))  
 
 
-def fetch_nasa_epic(nasa_api_key):
+def fetch_nasa_epic():
     nasa_epic_url = f"https://api.nasa.gov/EPIC/api/natural/all"
     payload = {
         "api_key": nasa_api_key,
@@ -49,7 +49,7 @@ def fetch_nasa_epic(nasa_api_key):
             response = requests.get(f"https://api.nasa.gov/EPIC/archive/natural/{last_date_formatted}/png/{name}.png", params=payload)
             extension = ".png"
             picture_date = datetime.datetime.now().timestamp()
-            image_path = os.path.join(create_directory(), f"nasa_epic_{picture_date}{extension}")
+            image_path = os.path.join(create_directory(dir_name), f"nasa_epic_{picture_date}{extension}")
             try:
                 save_all_image(response.url, image_path)
             except requests.exceptions.HTTPError as error:
@@ -81,15 +81,24 @@ if __name__ == '__main__':
         help="Сколько изображений скачать? (По умолчанию : 50)",
         default=50,
     )
+    parser.add_argument(
+      "-d",
+      "--dir_name",
+      type=str,
+      help="Имя директории (По умолчанию : images)",
+      default="images",
+    )
     args = parser.parse_args()
     if args.apod:
       try:
           count = args.count
-          fetch_nasa_apod(nasa_api_key, count)
+          dir_name = args.dir_name
+          fetch_nasa_apod()
       except requests.exceptions.HTTPError as error:
           exit("Невозможно получить данные с сайта NASA EPIC или NASA APOD:\n{0}".format(error))
     if args.epic:
       try:
-          fetch_nasa_epic(nasa_api_key)
+          dir_name = args.dir_name
+          fetch_nasa_epic()
       except requests.exceptions.HTTPError as error:
           exit("Невозможно получить данные с сайта NASA EPIC или NASA APOD:\n{0}".format(error))
