@@ -11,8 +11,8 @@ def save_all_image(image_url, image_path, headers=None, params=None):
         file.write(response.content)
 
 
-def create_directory():
-    directory_path = os.path.join(os.getcwd(), 'images')
+def create_directory(dir_name):
+    directory_path = os.path.join(os.getcwd(), dir_name)
     os.makedirs(directory_path, exist_ok=True)
     return directory_path
 
