@@ -16,7 +16,7 @@ def send_to_bot():
                 try:
                     bot = telegram.Bot(token=telegram_token)
                     bot.send_photo(chat_id=telegram_chat_id, photo=photo)
-                    sleep(14400)
+                    sleep(time_sleep)
                 except NetworkError:
                     print("Ошибка подключения. Повторная попытка через 10 секунд...")
                     sleep(10)
@@ -35,6 +35,14 @@ if __name__ == "__main__":
         help="Имя директории откуда будут загружаться картинки (По умолчанию : images)",
         default="images",
     )
+    parser.add_argument(
+        "-t",
+        "--time_sleep",
+        type=int,
+        help="Время через которое происходят публикации (По умолчанию : 14400, число вводится в секундах : Пример - 4 часа = 240 минут или 14400 секунд)",
+        default=14400,
+    )
     args = parser.parse_args()
     dir_name = args.dir_name
+    time_sleep = args.time_sleep
     send_to_bot()
