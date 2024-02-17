@@ -42,7 +42,7 @@ def fetch_nasa_epic():
     else:
         last_date = datetime.date.fromisoformat(data[0]["date"])
         last_date_formatted = last_date.strftime("%Y/%m/%d")
-        last_date_respone = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{last_date}", params=payload)
+        last_date_response = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{last_date}", params=payload)
         last_date_response.raise_for_status()
         last_date_image = last_date_respone.json()
         picture_names = [description["image"] for description in last_date_image]
