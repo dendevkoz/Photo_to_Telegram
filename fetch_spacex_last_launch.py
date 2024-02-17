@@ -5,7 +5,7 @@ import logging
 import argparse
 
 
-def fetch_spacex_last_launch():
+def fetch_spacex_last_launch(launch_id, dir_name):
     url = f"https://api.spacexdata.com/v5/launches/{launch_id}"
     response = requests.get(url)
     response.raise_for_status()
@@ -53,6 +53,6 @@ if __name__ == "__main__":
         try:
             dir_name = args.dir_name
             launch_id = args.launch_id
-            fetch_spacex_last_launch()
+            fetch_spacex_last_launch(launch_id, dir_name)
         except requests.exceptions.HTTPError as error:
             logging.error("Невозможно получить данные с сайта SPACEX:\n{0}".format(error))
