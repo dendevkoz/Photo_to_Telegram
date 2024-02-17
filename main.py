@@ -6,7 +6,7 @@ from telegram.error import NetworkError
 import argparse
 
 
-def send_to_bot():
+def send_to_bot(dir_name, time_sleep):
     while True:
         for root_folder, folder, file in os.walk(dir_name):
             for file_name in file:
@@ -45,4 +45,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     dir_name = args.dir_name
     time_sleep = args.time_sleep
-    send_to_bot()
+    send_to_bot(dir_name, time_sleep)
