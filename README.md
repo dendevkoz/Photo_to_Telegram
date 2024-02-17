@@ -1,4 +1,4 @@
-# Photo_to_Telergram
+# Photo_to_Telegram
 
 Данная программа позволяет скачивать фотографии и выкладывать их в Телеграм канал.
 
@@ -48,7 +48,7 @@ pip install -r requirements.txt
           ```
 
 - Для скачивания фотографий с сайта SPACEX используем **fetch_spacex_last_launch.py**:
-  - Нужно выбрать опеределенный аргумент:
+  - Нужно выбрать определенный аргумент:
      - -s (--spacex)  -  Загружает изображения SpaseX
       ```
         python fetch_spacex_last_launch.py -s
