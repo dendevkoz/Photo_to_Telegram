@@ -7,7 +7,7 @@ import logging
 import argparse
   
 
-def fetch_nasa_apod():
+def fetch_nasa_apod(nasa_api_key, count, dir_name):
     nasa_apod_url = f"https://api.nasa.gov/planetary/apod"
     payload = {
         "count": count,
@@ -26,7 +26,7 @@ def fetch_nasa_apod():
             logging.error("Не удалось сохранить изображение с сайта NASA-APOD:\n{0}".format(error))  
 
 
-def fetch_nasa_epic():
+def fetch_nasa_epic(nasa_api_key, dir_name):
     nasa_epic_url = f"https://api.nasa.gov/EPIC/api/natural/all"
     payload = {
         "api_key": nasa_api_key,
@@ -89,12 +89,12 @@ if __name__ == '__main__':
       try:
           count = args.count
           dir_name = args.dir_name
-          fetch_nasa_apod()
+          fetch_nasa_apod(nasa_api_key, count, dir_name)
       except requests.exceptions.HTTPError as error:
           exit("Невозможно получить данные с сайта NASA EPIC или NASA APOD:\n{0}".format(error))
     if args.epic:
       try:
           dir_name = args.dir_name
-          fetch_nasa_epic()
+          fetch_nasa_epic(nasa_api_key, dir_name)
       except requests.exceptions.HTTPError as error:
           exit("Невозможно получить данные с сайта NASA EPIC или NASA APOD:\n{0}".format(error))
