@@ -2,7 +2,7 @@ import os
 import requests
 import datetime
 from dotenv import dotenv_values
-from save_image import save_all_image, create_directory, define_extension
+from help_functions import save_all_image, create_directory, define_extension, check_response
 import logging
 import argparse
   
@@ -13,9 +13,7 @@ def fetch_nasa_apod(nasa_api_key, count, dir_name):
         "count": count,
         "api_key": nasa_api_key,
     }
-    response = requests.get(nasa_apod_url, params=payload)
-    response.raise_for_status()
-    data = response.json()
+    data = check_response(nasa_apod_url, payload)
     urls_images = [description["url"] for description in data]  
     for image_number, image_url in enumerate(urls_images):
         extension = define_extension(image_url)
@@ -31,9 +29,7 @@ def fetch_nasa_epic(nasa_api_key, dir_name):
     payload = {
         "api_key": nasa_api_key,
     }
-    date_response = requests.get(nasa_epic_url, params=payload)
-    date_response.raise_for_status()
-    data = date_response.json()
+    data = check_response(nasa_epic_url, payload)
     last_date = datetime.date.fromisoformat(data[0]["date"])
     last_date_formatted = last_date.strftime("%Y/%m/%d")
     last_date_response = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{last_date}", params=payload)
