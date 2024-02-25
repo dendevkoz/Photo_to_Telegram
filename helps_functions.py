@@ -29,6 +29,14 @@ def check_response(url, payload):
     response.raise_for_status()
     return response.json
 
+
+def collect_images(dir_name):
+    for root_folder, folder, files in os.walk(dir_name):
+        for file_name in files:
+            image_path = os.path.join(f"{root_folder}", f"{file_name}")
+            with open(image_path, "rb") as image_file:
+                photo = image_file.read()
+    return photo
     
 
 
