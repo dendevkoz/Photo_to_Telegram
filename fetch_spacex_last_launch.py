@@ -1,15 +1,13 @@
 import requests
 import os
-from save_image import save_all_image, create_directory
+from save_image import save_all_image, create_directory, check_response
 import logging
 import argparse
 
 
 def fetch_spacex_last_launch(launch_id, dir_name):
     url = f"https://api.spacexdata.com/v5/launches/{launch_id}"
-    response = requests.get(url)
-    response.raise_for_status()
-    data = response.json()
+    data = check_response(url, None)
     image = data["links"]["flickr"]["original"]
     for image_number, image_url in enumerate(image):
         image_path = os.path.join(create_directory(dir_name), f"spacex_{image_number}.jpg")
