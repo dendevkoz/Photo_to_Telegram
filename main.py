@@ -1,25 +1,21 @@
 import telegram
-import os
 from dotenv import dotenv_values
 from time import sleep
 from telegram.error import NetworkError
 import argparse
+from helps_functions import collect_images
+
 
 
 def send_to_bot(dir_name, time_sleep):
     while True:
-        for root_folder, folder, file in os.walk(dir_name):
-            for file_name in file:
-                image_path = os.path.join(f"{root_folder}", f"{file_name}")
-                with open(image_path, "rb") as image_file:
-                    photo = image_file.read()
-                try:
-                    bot = telegram.Bot(token=telegram_token)
-                    bot.send_photo(chat_id=telegram_chat_id, photo=photo)
-                    sleep(time_sleep)
-                except NetworkError:
-                    print("Ошибка подключения. Повторная попытка через 10 секунд...")
-                    sleep(10)
+        try:
+            bot = telegram.Bot(token=telegram_token)
+            bot.send_photo(chat_id=telegram_chat_id, photo=collect_images(dir_name)
+            sleep(time_sleep)
+        except NetworkError:
+            print("Ошибка подключения. Повторная попытка через 10 секунд...")
+            sleep(10)
 
 
 if __name__ == "__main__":
