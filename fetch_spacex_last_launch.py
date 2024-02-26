@@ -1,6 +1,6 @@
 import requests
 import os
-from save_image import save_all_image, create_directory, check_response
+from help_functions import save_all_image, create_directory, check_response
 import logging
 import argparse
 
