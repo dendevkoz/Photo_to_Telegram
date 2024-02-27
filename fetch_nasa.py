@@ -34,7 +34,7 @@ def fetch_nasa_epic(nasa_api_key, dir_name):
     last_date_formatted = last_date.strftime("%Y/%m/%d")
     last_date_response = requests.get(f"https://api.nasa.gov/EPIC/api/natural/date/{last_date}", params=payload)
     last_date_response.raise_for_status()
-    last_date_image = last_date_respone.json()
+    last_date_image = last_date_response.json()
     picture_names = [description["image"] for description in last_date_image]
     for name in picture_names:
         response = requests.get(f"https://api.nasa.gov/EPIC/archive/natural/{last_date_formatted}/png/{name}.png", params=payload)
