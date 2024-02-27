@@ -11,7 +11,7 @@ def send_to_bot(dir_name, time_sleep):
     while True:
         try:
             bot = telegram.Bot(token=telegram_token)
-            bot.send_photo(chat_id=telegram_chat_id, photo=collect_images(dir_name)
+            bot.send_photo(chat_id=telegram_chat_id, photo=collect_images(dir_name))
             sleep(time_sleep)
         except NetworkError:
             print("Ошибка подключения. Повторная попытка через 10 секунд...")
