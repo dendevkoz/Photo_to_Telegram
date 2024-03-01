@@ -3,7 +3,7 @@ from dotenv import dotenv_values
 from time import sleep
 from telegram.error import NetworkError
 import argparse
-from helps_functions import collect_images
+from help_functions import collect_images
 
 
 
