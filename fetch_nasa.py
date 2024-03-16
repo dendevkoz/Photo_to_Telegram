@@ -14,7 +14,7 @@ def fetch_nasa_apod(nasa_api_key, count, dir_name):
         "api_key": nasa_api_key,
     }
     data = check_response(nasa_apod_url, payload)
-    urls_images = [description["url"] for description in data()]  
+    urls_images = [description["url"] for description in data]  
     for image_number, image_url in enumerate(urls_images):
         extension = define_extension(image_url)
         image_path = os.path.join(create_directory(dir_name), f"nasa_apod{image_number}{extension}")
