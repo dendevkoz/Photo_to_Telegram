@@ -27,7 +27,7 @@ def define_extension(link):
 def check_response(url, payload):
     response = requests.get(url, params=payload)
     response.raise_for_status()
-    return response.json
+    return response.json()
 
 
 def collect_images(dir_name):
