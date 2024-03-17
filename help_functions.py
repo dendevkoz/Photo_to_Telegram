@@ -32,7 +32,7 @@ def get_response(url, payload):
     return response.json()
 
 
-def open_and_posted(dir_name, time_sleep, telegram_chat_id, bot):
+def posted_all(dir_name, time_sleep, telegram_chat_id, bot):
     for root_folder, folder, files in os.walk(dir_name):
         for file_name in files:
            image_path = os.path.join(f"{root_folder}", f"{file_name}")
