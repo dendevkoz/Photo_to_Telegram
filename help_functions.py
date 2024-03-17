@@ -39,6 +39,11 @@ def posted_all(dir_name, time_sleep, telegram_chat_id, bot):
             with open(image_path, "rb") as image_file:
                 bot.send_photo(chat_id=telegram_chat_id, photo=image_file)
             sleep(time_sleep)
+            
+
+def posted_one(bot, image_path, telegram_chat_id):
+    with open(image_path, "rb") as image_file:
+        bot.send_photo(chat_id=telegram_chat_id, photo=image_file)
 
 
 def take_only_image(nasa_apod_url, payload, count):
