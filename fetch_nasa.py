@@ -13,8 +13,8 @@ def fetch_nasa_apod(nasa_api_key, count, dir_name):
         "count": count,
         "api_key": nasa_api_key,
     }
-    data = check_response(nasa_apod_url, payload)
-    urls_images = [description["url"] for description in data]  
+    response = check_response(nasa_apod_url, payload)
+    urls_images = [description["url"] for description in response]  
     for image_number, image_url in enumerate(urls_images):
         extension = define_extension(image_url)
         image_path = os.path.join(create_directory(dir_name), f"nasa_apod{image_number}{extension}")
@@ -29,8 +29,8 @@ def fetch_nasa_epic(nasa_api_key, dir_name):
     payload = {
         "api_key": nasa_api_key,
     }
-    data = check_response(nasa_epic_url, payload)
-    last_date = datetime.date.fromisoformat(data[0]["date"])
+    response = check_response(nasa_epic_url, payload)
+    last_date = datetime.date.fromisoformat(response[0]["date"])
     last_date_formatted = last_date.strftime("%Y/%m/%d")
     nasa_last_date_url = f"https://api.nasa.gov/EPIC/api/natural/date/{last_date}"
     last_date_image = check_response(nasa_last_date_url, payload)
