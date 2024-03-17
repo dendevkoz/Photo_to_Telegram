@@ -36,7 +36,15 @@ if __name__ == "__main__":
         help="Время через которое происходят публикации (По умолчанию : 14400, число вводится в секундах : Пример - 4 часа = 240 минут или 14400 секунд)",
         default=14400,
     )
+     parser.add_argument(
+        "-p",
+        "--image_path",
+        type=str,
+        help="Путь до картинки",
+        default=None,
+    )
     args = parser.parse_args()
     dir_name = args.dir_name
     time_sleep = args.time_sleep
-    send_to_bot(dir_name, time_sleep)
+    image_path = args.image_path
+    send_to_bot(dir_name, time_sleep, image_path)
