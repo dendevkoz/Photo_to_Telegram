@@ -37,6 +37,14 @@ def collect_images(dir_name):
             with open(image_path, "rb") as image_file:
                 photo = image_file.read()
     return photo
-    
+
+
+def take_only_image(nasa_apod_url, payload, count):
+    type_image = []
+    response = get_response(nasa_apod_url, payload)
+    for item in range(count):
+        if response[item]["media_type"] == "image":
+            type_image.append(response[item])
+    return type_image
 
 
