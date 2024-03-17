@@ -3,13 +3,18 @@ from dotenv import dotenv_values
 from time import sleep
 from telegram.error import NetworkError
 import argparse
-from help_functions import posted_all
+from help_functions import posted_all, posted_one, posted_random_image
 
 
 
 def send_to_bot(dir_name, time_sleep):
     try:
         bot = telegram.Bot(token=telegram_token)
+        if image_path:
+            posted_one(bot, image_path, telegram_chat_id)
+        elif dir_name:
+            posted_random_image(dir_name, telegram_chat_id, bot)
+        else:
         posted_all(dir_name, time_sleep, telegram_chat_id, bot)
     except NetworkError:
         print("Ошибка подключения. Повторная попытка через 10 секунд...")
