@@ -7,8 +7,8 @@ import argparse
 
 def fetch_spacex_last_launch(launch_id, dir_name):
     url = f"https://api.spacexdata.com/v5/launches/{launch_id}"
-    data = check_response(url, None)
-    image = data["links"]["flickr"]["original"]
+    response = check_response(url, None)
+    image = response["links"]["flickr"]["original"]
     for image_number, image_url in enumerate(image):
         image_path = os.path.join(create_directory(dir_name), f"spacex_{image_number}.jpg")
         try:
