@@ -3,14 +3,14 @@ from dotenv import dotenv_values
 from time import sleep
 from telegram.error import NetworkError
 import argparse
-from help_functions import open_and_posted
+from help_functions import posted_all
 
 
 
 def send_to_bot(dir_name, time_sleep):
     try:
         bot = telegram.Bot(token=telegram_token)
-        open_and_posted(dir_name, time_sleep, telegram_chat_id, bot)
+        posted_all(dir_name, time_sleep, telegram_chat_id, bot)
     except NetworkError:
         print("Ошибка подключения. Повторная попытка через 10 секунд...")
         sleep(10)
