@@ -46,6 +46,15 @@ def posted_one(bot, image_path, telegram_chat_id):
         bot.send_photo(chat_id=telegram_chat_id, photo=image_file)
 
 
+def posted_random_image(dir_name, telegram_chat_id, bot):
+    pictures = os.listdir(dir_name)
+    picture = random.choice(pictures)
+    for root_folder, folder, files in os.walk(dir_name):
+        image_path = os.path.join(f"{root_folder}", f"{picture}")
+        with open(image_path, "rb") as image_file:
+            bot.send_photo(chat_id=telegram_chat_id, photo=image_file)
+
+
 def take_only_image(nasa_apod_url, payload, count):
     type_image = []
     response = get_response(nasa_apod_url, payload)
