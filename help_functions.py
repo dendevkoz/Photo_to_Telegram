@@ -24,7 +24,7 @@ def define_extension(link):
     return extension
 
 
-def check_response(url, payload):
+def get_response(url, payload):
     response = requests.get(url, params=payload)
     response.raise_for_status()
     return response.json()
