@@ -6,7 +6,6 @@ import argparse
 from help_functions import posted_all, posted_one, posted_random_image
 
 
-
 def send_to_bot(dir_name, time_sleep, image_path):
     try:
         bot = telegram.Bot(token=telegram_token)
