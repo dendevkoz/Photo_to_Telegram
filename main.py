@@ -44,7 +44,7 @@ if __name__ == "__main__":
         "-p",
         "--image_path",
         type=str,
-        help="Путь до картинки",
+        help="Путь до картинки (Пример: images/nasa_apod1.jpg",
         default=None,
     )
     args = parser.parse_args()
