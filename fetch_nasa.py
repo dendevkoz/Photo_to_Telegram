@@ -2,7 +2,7 @@ import os
 import requests
 import datetime
 from dotenv import dotenv_values
-from help_functions import save_all_image, create_directory, define_extension, get_response
+from help_functions import save_all_image, create_directory, define_extension, get_response, take_only_image
 import logging
 import argparse
   
@@ -13,8 +13,8 @@ def fetch_nasa_apod(nasa_api_key, count, dir_name):
         "count": count,
         "api_key": nasa_api_key,
     }
-    response = get_response(nasa_apod_url, payload)
-    get_image_url = [description["url"] for description in response]  
+    image_only = take_only_image(nasa_apod_url, payload, count)
+    get_image_url = [description["url"] for description in image_only]  
     for image_number, image_url in enumerate(get_image_url):
         extension = define_extension(image_url)
         image_path = os.path.join(create_directory(dir_name), f"nasa_apod{image_number}{extension}")
