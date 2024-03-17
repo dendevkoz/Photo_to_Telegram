@@ -3,19 +3,17 @@ from dotenv import dotenv_values
 from time import sleep
 from telegram.error import NetworkError
 import argparse
-from help_functions import collect_images
+from help_functions import open_and_posted
 
 
 
 def send_to_bot(dir_name, time_sleep):
-    while True:
-        try:
-            bot = telegram.Bot(token=telegram_token)
-            bot.send_photo(chat_id=telegram_chat_id, photo=collect_images(dir_name))
-            sleep(time_sleep)
-        except NetworkError:
-            print("Ошибка подключения. Повторная попытка через 10 секунд...")
-            sleep(10)
+    try:
+        bot = telegram.Bot(token=telegram_token)
+        open_and_posted(dir_name, time_sleep, telegram_chat_id, bot)
+    except NetworkError:
+        print("Ошибка подключения. Повторная попытка через 10 секунд...")
+        sleep(10)
 
 
 if __name__ == "__main__":
