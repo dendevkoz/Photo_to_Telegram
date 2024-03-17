@@ -2,6 +2,8 @@ import requests
 import os
 from urllib.parse import urlsplit, unquote
 from os import path
+from time import sleep
+
 
 
 def save_all_image(image_url, image_path, headers=None, params=None):
@@ -30,13 +32,13 @@ def get_response(url, payload):
     return response.json()
 
 
-def collect_images(dir_name):
+def collect_images(dir_name, time_sleep, telegram_chat_id, bot):
     for root_folder, folder, files in os.walk(dir_name):
         for file_name in files:
-            image_path = os.path.join(f"{root_folder}", f"{file_name}")
+           image_path = os.path.join(f"{root_folder}", f"{file_name}")
             with open(image_path, "rb") as image_file:
-                photo = image_file.read()
-    return photo
+                bot.send_photo(chat_id=telegram_chat_id, photo=image_file)
+            sleep(time_sleep)
 
 
 def take_only_image(nasa_apod_url, payload, count):
