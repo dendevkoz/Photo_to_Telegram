@@ -37,14 +37,8 @@ def posted_all(dir_name, time_sleep, telegram_chat_id, bot):
     for root_folder, folder, files in os.walk(dir_name):
         for file_name in files:
             image_path = os.path.join(f"{root_folder}", f"{file_name}")
-            with open(image_path, "rb") as image_file:
-                bot.send_photo(chat_id=telegram_chat_id, photo=image_file)
+            open_and_post(bot, image_path, telegram_chat_id)
             sleep(time_sleep)
-            
-
-def posted_one(bot, image_path, telegram_chat_id):
-    with open(image_path, "rb") as image_file:
-        bot.send_photo(chat_id=telegram_chat_id, photo=image_file)
 
 
 def posted_random_image(dir_name, telegram_chat_id, bot):
@@ -52,8 +46,12 @@ def posted_random_image(dir_name, telegram_chat_id, bot):
     picture = random.choice(pictures)
     for root_folder, folder, files in os.walk(dir_name):
         image_path = os.path.join(f"{root_folder}", f"{picture}")
-        with open(image_path, "rb") as image_file:
-            bot.send_photo(chat_id=telegram_chat_id, photo=image_file)
+        open_and_post(bot, image_path, telegram_chat_id)
+
+
+def open_and_post(bot, image_path, telegram_chat_id):
+    with open(image_path, "rb") as image_file:
+        bot.send_photo(chat_id=telegram_chat_id, photo=image_file)
 
 
 def take_only_image(nasa_apod_url, payload, count):
