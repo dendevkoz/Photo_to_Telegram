@@ -3,14 +3,14 @@ from dotenv import dotenv_values
 from time import sleep
 from telegram.error import NetworkError
 import argparse
-from help_functions import post_all, post_random_image
+from help_functions import post_all, post_random_image, open_and_post
 
 
 def send_to_bot(dir_name, time_sleep, image_path):
     try:
         bot = telegram.Bot(token=telegram_token)
         if image_path:
-            posted_one(bot, image_path, telegram_chat_id)
+            open_and_post(bot, image_path, telegram_chat_id)
         elif dir_name:
             posted_random_image(dir_name, telegram_chat_id, bot)
         else:
