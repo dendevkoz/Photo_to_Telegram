@@ -14,7 +14,7 @@ def send_to_bot(dir_name, time_sleep, image_path):
         elif dir_name:
             posted_random_image(dir_name, telegram_chat_id, bot)
         else:
-        posted_all(dir_name, time_sleep, telegram_chat_id, bot)
+            posted_all(dir_name, time_sleep, telegram_chat_id, bot)
     except NetworkError:
         print("Ошибка подключения. Повторная попытка через 10 секунд...")
         sleep(10)
