@@ -33,7 +33,7 @@ def get_response(url, payload):
     return response.json()
 
 
-def posted_all(dir_name, time_sleep, telegram_chat_id, bot):
+def post_all(dir_name, time_sleep, telegram_chat_id, bot):
     for root_folder, folder, files in os.walk(dir_name):
         for file_name in files:
             image_path = os.path.join(f"{root_folder}", f"{file_name}")
@@ -41,7 +41,7 @@ def posted_all(dir_name, time_sleep, telegram_chat_id, bot):
             sleep(time_sleep)
 
 
-def posted_random_image(dir_name, telegram_chat_id, bot):
+def post_random_image(dir_name, telegram_chat_id, bot):
     pictures = os.listdir(dir_name)
     picture = random.choice(pictures)
     for root_folder, folder, files in os.walk(dir_name):
