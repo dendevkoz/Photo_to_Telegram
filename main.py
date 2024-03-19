@@ -3,7 +3,7 @@ from dotenv import dotenv_values
 from time import sleep
 from telegram.error import NetworkError
 import argparse
-from help_functions import posted_all, posted_one, posted_random_image
+from help_functions import post_all, post_random_image
 
 
 def send_to_bot(dir_name, time_sleep, image_path):
