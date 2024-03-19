@@ -36,7 +36,7 @@ def get_response(url, payload):
 def posted_all(dir_name, time_sleep, telegram_chat_id, bot):
     for root_folder, folder, files in os.walk(dir_name):
         for file_name in files:
-           image_path = os.path.join(f"{root_folder}", f"{file_name}")
+            image_path = os.path.join(f"{root_folder}", f"{file_name}")
             with open(image_path, "rb") as image_file:
                 bot.send_photo(chat_id=telegram_chat_id, photo=image_file)
             sleep(time_sleep)
