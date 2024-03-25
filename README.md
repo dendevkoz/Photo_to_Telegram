@@ -76,7 +76,7 @@ pip install -r requirements.txt
     
        Публикует случайное изображение
       ```python
-        python main.py
+      python main.py
       ```
     - -d (--dir_name)  -  Имя директории (По умолчанию : images)
      
