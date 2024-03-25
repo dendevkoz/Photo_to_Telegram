@@ -82,7 +82,7 @@ pip install -r requirements.txt
      
       Публикует все изображения из директории в бесконечном цикле 
       ```python
-      python python main.py -d (имя папки)
+      python main.py -d (имя папки)
       ```
     - -p (--image_path) - Путь до изображения (images/nasa_apod1.jpg)
      
