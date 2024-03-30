@@ -37,7 +37,7 @@ def post_all(dir_name, time_sleep, telegram_chat_id, bot):
     for root_folder, folder, files in os.walk(dir_name):
         for file_name in files:
             image_path = os.path.join(f"{root_folder}", f"{file_name}")
-            open_and_post(bot, image_path, telegram_chat_id)
+            open_and_post(image_path, telegram_chat_id, bot)
             sleep(time_sleep)
 
 
