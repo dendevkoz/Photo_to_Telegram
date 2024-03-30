@@ -6,15 +6,15 @@ import argparse
 from help_functions import post_all, post_random_image, open_and_post
 
 
-def send_to_bot(dir_name, time_sleep, image_path):
+def send_to_bot(dir_name, time_sleep, image_path, path_to_random_image, bot):
     try:
-        bot = telegram.Bot(token=telegram_token)
-        if image_path:
-            open_and_post(bot, image_path, telegram_chat_id)
-        elif dir_name:
-            post_random_image(dir_name, telegram_chat_id, bot)
+        if image_path is not None:
+            open_and_post(image_path, telegram_chat_id, bot)
         else:
-            post_all(dir_name, time_sleep, telegram_chat_id, bot)
+            if path_to_random_image is not None:
+                post_random_image(path_to_random_image, telegram_chat_id, bot)
+            else:
+                post_all(dir_name, time_sleep, telegram_chat_id, bot)
     except NetworkError:
         print("Ошибка подключения. Повторная попытка через 10 секунд...")
         sleep(10)
