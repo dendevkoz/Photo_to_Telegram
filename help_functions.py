@@ -45,7 +45,7 @@ def post_random_image(path_to_random_image, telegram_chat_id, bot):
     pictures = os.listdir(path_to_random_image)
     picture = random.choice(pictures)
     image_path = os.path.join(f"{path_to_random_image}", f"{picture}")
-    open_and_post(bot, image_path, telegram_chat_id)
+    open_and_post(image_path, telegram_chat_id, bot)
 
 
 def open_and_post(bot, image_path, telegram_chat_id):
