@@ -48,7 +48,7 @@ def post_random_image(path_to_random_image, telegram_chat_id, bot):
     open_and_post(image_path, telegram_chat_id, bot)
 
 
-def open_and_post(bot, image_path, telegram_chat_id):
+def open_and_post(image_path, telegram_chat_id, bot):
     with open(image_path, "rb") as image_file:
         bot.send_photo(chat_id=telegram_chat_id, photo=image_file)
 
