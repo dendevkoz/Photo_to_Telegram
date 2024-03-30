@@ -22,8 +22,8 @@ def create_directory(dir_name):
 
 def define_extension(link):
     decoded_link = unquote(link)
-    split_link = urlsplit(decoded_link)
-    extension = path.splitext(split_link.path)[1]
+    parsed_link = urlsplit(decoded_link)
+    extension = path.splitext(parsed_link.path)[1]
     return extension
 
 
