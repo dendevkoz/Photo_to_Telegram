@@ -48,7 +48,7 @@ if __name__ == "__main__":
         help="Путь до картинки (Пример: images/nasa_apod1.jpg",
         default=None,
     )
-     parser.add_argument(
+    parser.add_argument(
         "-r",
         "--path_to_random_image",
         type=str,
