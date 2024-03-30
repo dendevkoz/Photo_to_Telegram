@@ -23,6 +23,7 @@ def send_to_bot(dir_name, time_sleep, image_path, path_to_random_image, bot):
 if __name__ == "__main__":
     telegram_token = dotenv_values(".env")["TELEGRAM_TOKEN"]
     telegram_chat_id = dotenv_values(".env")["TG_CHAT_ID"]
+    bot = telegram.Bot(token=telegram_token)
     parser = argparse.ArgumentParser(
         description="Загрузка изображений в Телеграм"
     )
@@ -47,8 +48,16 @@ if __name__ == "__main__":
         help="Путь до картинки (Пример: images/nasa_apod1.jpg",
         default=None,
     )
+     parser.add_argument(
+        "-r",
+        "--path_to_random_image",
+        type=str,
+        help="Путь до папки из которой будет взята рандомная картинка",
+        default=None
+    )
     args = parser.parse_args()
     dir_name = args.dir_name
     time_sleep = args.time_sleep
     image_path = args.image_path
-    send_to_bot(dir_name, time_sleep, image_path)
+    path_to_random_image = args.path_to_random_image
+    send_to_bot(dir_name, time_sleep, image_path, path_to_random_image, bot)
