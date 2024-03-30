@@ -54,11 +54,11 @@ def open_and_post(bot, image_path, telegram_chat_id):
 
 
 def take_only_image(nasa_apod_url, payload, count):
-    type_image = []
+    filtered_elements = []
     response = get_response(nasa_apod_url, payload)
     for item in range(count):
         if response[item]["media_type"] == "image":
-            type_image.append(response[item])
-    return type_image
+            filtered_elements.append(response[item])
+    return filtered_elements
 
 
