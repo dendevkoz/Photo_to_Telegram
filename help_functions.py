@@ -36,7 +36,7 @@ def get_response(url, payload):
 def post_all(dir_name, time_sleep, telegram_chat_id, bot):
     for root_folder, folder, files in os.walk(dir_name):
         for file_name in files:
-            image_path = os.path.join(f"{root_folder}", f"{file_name}")
+            image_path = os.path.join(root_folder, file_name)
             open_and_post(image_path, telegram_chat_id, bot)
             sleep(time_sleep)
 
@@ -44,7 +44,7 @@ def post_all(dir_name, time_sleep, telegram_chat_id, bot):
 def post_random_image(path_to_random_image, telegram_chat_id, bot):
     pictures = os.listdir(path_to_random_image)
     picture = random.choice(pictures)
-    image_path = os.path.join(f"{path_to_random_image}", f"{picture}")
+    image_path = os.path.join(path_to_random_image, picture)
     open_and_post(image_path, telegram_chat_id, bot)
 
 
