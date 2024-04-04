@@ -17,7 +17,6 @@ def fetch_spacex_last_launch(launch_id, dir_name):
             logging.error("Не удалось сохранить изображение с сайта SpaceX:\n{0}".format(error))
 
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Загрузка изображений с последнего запуска SpaceX"
