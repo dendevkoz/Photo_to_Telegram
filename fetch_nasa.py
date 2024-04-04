@@ -80,15 +80,15 @@ if __name__ == '__main__':
     )
     args = parser.parse_args()
     if args.apod:
-      try:
-          count = args.count
-          dir_name = args.dir_name
-          fetch_nasa_apod(nasa_api_key, count, dir_name)
-      except requests.exceptions.HTTPError as error:
-          exit("Невозможно получить данные с сайта NASA EPIC или NASA APOD:\n{0}".format(error))
+        try:
+            count = args.count
+            dir_name = args.dir_name
+            fetch_nasa_apod(nasa_api_key, count, dir_name)
+        except requests.exceptions.HTTPError as error:
+            exit("Невозможно получить данные с сайта NASA EPIC или NASA APOD:\n{0}".format(error))
     if args.epic:
-      try:
-          dir_name = args.dir_name
-          fetch_nasa_epic(nasa_api_key, dir_name)
-      except requests.exceptions.HTTPError as error:
-          exit("Невозможно получить данные с сайта NASA EPIC или NASA APOD:\n{0}".format(error))
+        try:
+            dir_name = args.dir_name
+            fetch_nasa_epic(nasa_api_key, dir_name)
+        except requests.exceptions.HTTPError as error:
+            exit("Невозможно получить данные с сайта NASA EPIC или NASA APOD:\n{0}".format(error))
