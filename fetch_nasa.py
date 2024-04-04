@@ -37,7 +37,6 @@ def fetch_nasa_epic(nasa_api_key, dir_name):
     picture_names = [description["image"] for description in last_date_image]
     for name in picture_names:
         image_url = (f"https://api.nasa.gov/EPIC/archive/natural/{last_date_formatted}/png/{name}.png")
-        response.raise_for_status()
         extension = ".png"
         picture_date = datetime.datetime.now().timestamp()
         image_path = os.path.join(create_directory(dir_name), f"nasa_epic_{picture_date}{extension}")
