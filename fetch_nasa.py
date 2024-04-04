@@ -47,7 +47,6 @@ def fetch_nasa_epic(nasa_api_key, dir_name):
             logging.error("Не удалось сохранить изображение с сайта NASA-EPIC:\n{0}".format(error))
 
 
-
 if __name__ == '__main__':
     nasa_api_key = dotenv_values(".env")["NASA_KEY"]
     parser = argparse.ArgumentParser(
