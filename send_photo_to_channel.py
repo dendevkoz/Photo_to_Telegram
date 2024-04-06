@@ -7,17 +7,13 @@ from help_functions import post_all, post_random_image, open_and_post
 
 
 def send_to_bot(dir_name, time_sleep, image_path, path_to_random_image, bot):
-    try:
-        if image_path is not None:
-            open_and_post(image_path, telegram_chat_id, bot)
+    if image_path is not None:
+        open_and_post(image_path, telegram_chat_id, bot) 
+    else:
+        if path_to_random_image is not None:
+            post_random_image(path_to_random_image, telegram_chat_id, bot)
         else:
-            if path_to_random_image is not None:
-                post_random_image(path_to_random_image, telegram_chat_id, bot)
-            else:
-                post_all(dir_name, time_sleep, telegram_chat_id, bot)
-    except NetworkError:
-        print("Ошибка подключения. Повторная попытка через 10 секунд...")
-        sleep(10)
+            post_all(dir_name, time_sleep, telegram_chat_id, bot)
 
 
 if __name__ == "__main__":
