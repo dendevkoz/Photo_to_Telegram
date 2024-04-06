@@ -30,13 +30,13 @@ def fetch_nasa_epic(nasa_api_key, dir_name):
         "api_key": nasa_api_key,
     }
     response = get_response(nasa_epic_url, payload)
-    last_date = datetime.date.fromisoformat(response[0]["date"])
-    last_date_formatted = last_date.strftime("%Y/%m/%d")
-    nasa_last_date_url = f"https://api.nasa.gov/EPIC/api/natural/date/{last_date}"
-    last_date_image = get_response(nasa_last_date_url, payload)
-    picture_names = [description["image"] for description in last_date_image]
+    latest_date = datetime.date.fromisoformat(response[0]["date"])
+    latest_date_formatted = latest_date.strftime("%Y/%m/%d")
+    nasa_latest_date_url = f"https://api.nasa.gov/EPIC/api/natural/date/{latest_date}"
+    latest_date_images = get_response(nasa_latest_date_url, payload)
+    picture_names = [description["image"] for description in latest_date_images]
     for name in picture_names:
-        image_url = f"https://api.nasa.gov/EPIC/archive/natural/{last_date_formatted}/png/{name}.png"
+        image_url = f"https://api.nasa.gov/EPIC/archive/natural/{latest_date_formatted}/png/{name}.png"
         extension = ".png"
         picture_date = datetime.datetime.now().timestamp()
         image_path = os.path.join(create_directory(dir_name), f"nasa_epic_{picture_date}{extension}")
