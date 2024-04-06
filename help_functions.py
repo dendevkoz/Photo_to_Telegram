@@ -2,6 +2,7 @@ import requests
 import os
 from urllib.parse import urlsplit, unquote
 from os import path
+from telegram.error import NetworkError
 from time import sleep
 import random
 
