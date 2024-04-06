@@ -1,7 +1,5 @@
 import telegram
 from dotenv import dotenv_values
-from time import sleep
-from telegram.error import NetworkError
 import argparse
 from help_functions import post_all, post_random_image, open_and_post
 
