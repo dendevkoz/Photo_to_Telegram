@@ -43,6 +43,9 @@ def post_all(dir_name, time_sleep, telegram_chat_id, bot):
             except NetworkError:
                 print("Ошибка подключения. Повторная попытка через 10 секунд...")
                 sleep(10)
+        while True:
+            post_random_image(root_folder, telegram_chat_id, bot)
+            sleep(time_sleep)
 
 
 def post_random_image(path_to_random_image, telegram_chat_id, bot):
