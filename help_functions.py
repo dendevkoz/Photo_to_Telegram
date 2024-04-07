@@ -33,7 +33,7 @@ def get_response(url, payload):
     return response.json()
 
 
-def post_all(dir_name, time_sleep, telegram_chat_id, bot):
+def post_all_endlessly(dir_name, time_sleep, telegram_chat_id, bot):
     for root_folder, folder, files in os.walk(dir_name):
         for file_name in files:
             try:
