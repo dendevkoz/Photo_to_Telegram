@@ -72,11 +72,11 @@ pip install -r requirements.txt
 
   
 - ### Что бы выложить изображения в телеграм:
-    - python main.py
+    - python send_photo_to_channel.py
     
       Публикует все изображения из директории, заданной по умолчанию ("images"), в бесконечном цикле
       ```python
-      python main.py
+      python send_photo_to_channel.py
       ```
     - -d (--dir_name)  -  Имя директории (По умолчанию : images)
      
@@ -84,19 +84,19 @@ pip install -r requirements.txt
       
       Если директория не указана, публикует из директории по умолчанию ("images") 
       ```python
-      python main.py -d (имя папки)
+      python send_photo_to_channel.py -d (имя папки)
       ```
     - -p (--image_path) - Путь до изображения (images/nasa_apod1.jpg)
      
       Публикует выбранное изображение
       ```python
-      python main.py -p images/nasa_apod1.jpg
+      python send_photo_to_channel.py -p images/nasa_apod1.jpg
       ```
     - -r (--path_to_random_image) - Путь до папки из которой будет взята рандомная картинка
    
       Публикует рандомное изображение из указанной папки
       ```python
-      python main.py -r images
+      python send_photo_to_channel.py -r images
       ```
 
 ## Цель проекта
