@@ -1,7 +1,7 @@
 import telegram
 from dotenv import dotenv_values
 import argparse
-from help_functions import post_all, post_random_image, open_and_post
+from help_functions import post_all_endlessly, post_random_image, open_and_post
 
 
 def send_to_bot(dir_name, time_sleep, image_path, path_to_random_image, bot):
@@ -11,7 +11,7 @@ def send_to_bot(dir_name, time_sleep, image_path, path_to_random_image, bot):
         if path_to_random_image is not None:
             post_random_image(path_to_random_image, telegram_chat_id, bot)
         else:
-            post_all(dir_name, time_sleep, telegram_chat_id, bot)
+            post_all_endlessly(dir_name, time_sleep, telegram_chat_id, bot)
 
 
 if __name__ == "__main__":
