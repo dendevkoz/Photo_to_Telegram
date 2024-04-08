@@ -15,8 +15,8 @@ def fetch_nasa_apod(nasa_api_key, count, dir_name):
     }
     images_only = [article for article in get_response(nasa_apod_url, payload)[:count]
                    if article["media_type"] == "image"]
-    get_images_url = [description["url"] for description in images_only]  
-    for image_number, image_url in enumerate(get_images_url):
+    get_images_urls = [description["url"] for description in images_only]  
+    for image_number, image_url in enumerate(get_images_urls):
         extension = define_extension(image_url)
         image_path = os.path.join(create_directory(dir_name), f"nasa_apod{image_number}{extension}")
         try:
