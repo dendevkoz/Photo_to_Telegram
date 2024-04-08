@@ -2,7 +2,7 @@ import os
 import requests
 import datetime
 from dotenv import dotenv_values
-from help_functions import save_all_image, create_directory, define_extension, get_response, take_only_images
+from help_functions import save_all_image, create_directory, define_extension, get_response
 import logging
 import argparse
   
