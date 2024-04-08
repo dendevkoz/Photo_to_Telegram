@@ -13,7 +13,7 @@ def fetch_nasa_apod(nasa_api_key, count, dir_name):
         "count": count,
         "api_key": nasa_api_key,
     }
-    image_only = [article for article in get_response(nasa_apod_url, payload)[:count]
+    images_only = [article for article in get_response(nasa_apod_url, payload)[:count]
                   if article["media_type"] == "image"]
     get_image_url = [description["url"] for description in image_only]  
     for image_number, image_url in enumerate(get_image_url):
