@@ -34,22 +34,17 @@ def get_response(url, payload):
 
 
 def post_all_endlessly(dir_name, time_sleep, telegram_chat_id, bot):
-    for root_folder, folder, files in os.walk(dir_name):
-        for file_name in files:
+    pictures_names_list = os.listdir(dir_name)
+    while True:
+        for picture_name in pictures_names_list:
             try:
-                image_path = os.path.join(root_folder, file_name)
+                image_path = os.path.join(dir_name, picture_name)
                 open_and_post(image_path, telegram_chat_id, bot)
                 sleep(time_sleep)
             except NetworkError:
                 print("Ошибка подключения. Повторная попытка через 10 секунд...")
                 sleep(10)
-        try:
-            while True:
-                post_random_image(root_folder, telegram_chat_id, bot)
-                sleep(time_sleep)
-        except NetworkError:
-                print("Ошибка подключения. Повторная попытка через 10 секунд...")
-                sleep(10)
+        random.shuffle(pictures_names_list)
             
 
 def post_random_image(path_to_random_image, telegram_chat_id, bot):
